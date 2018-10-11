@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1092698828076-bvoe36oh8fbhv2fd3ij9fcg6b98r54p2.apps.googleusercontent.com</string>
+	<string>216879609875-r3l2i86jnnu7eq3uclfgqf9ni87cmbvi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1092698828076-bvoe36oh8fbhv2fd3ij9fcg6b98r54p2</string>
+	<string>com.googleusercontent.apps.216879609875-r3l2i86jnnu7eq3uclfgqf9ni87cmbvi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD7p9iGQgVkmxcTlyS6UGkIdeA1HzQgX6U</string>
+	<string>AIzaSyA5QsGEnUUS1xHXHi0ya5yRELYZUdtIlyc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1092698828076</string>
+	<string>216879609875</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.relatedcode.chat</string>
 	<key>PROJECT_ID</key>
-	<string>messenger43-3db96</string>
+	<string>messenger44-60cda</string>
 	<key>STORAGE_BUCKET</key>
-	<string>messenger43-3db96.appspot.com</string>
+	<string>messenger44-60cda.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1092698828076:ios:8a9354d6483948fd</string>
+	<string>1:216879609875:ios:8a9354d6483948fd</string>
 	<key>DATABASE_URL</key>
-	<string>https://messenger43-3db96.firebaseio.com</string>
+	<string>https://messenger44-60cda.firebaseio.com</string>
 </dict>
 </plist>
