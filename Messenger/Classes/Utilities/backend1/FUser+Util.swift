@@ -32,7 +32,7 @@ extension FUser {
 
 	// MARK: - Instance methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func fullname() -> String			{ return (self[FUSER_FULLNAME] as? String)	?? ""						}
+	func fullname() -> String			{ return (self[FUSER_FULLNAME] as? String) ?? ""						}
 	func picture() -> String?			{ return self[FUSER_PICTURE] as? String									}
 	func thumbnail() -> String?			{ return self[FUSER_THUMBNAIL] as? String								}
 	func status() -> String?			{ return self[FUSER_STATUS] as? String									}

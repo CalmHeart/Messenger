@@ -82,7 +82,7 @@ class Chat: NSObject {
 			ProgressHUD.showError("Realm commit error.")
 		}
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func fetchOrCreateItem(chatId: String) -> DBChat {
 

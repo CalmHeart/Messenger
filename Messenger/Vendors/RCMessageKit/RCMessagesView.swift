@@ -32,7 +32,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		self.init(nibName: "RCMessagesView", bundle: nil)
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewDidLoad() {
 
@@ -63,7 +63,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		inputPanelInit()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewDidLayoutSubviews() {
 
@@ -73,7 +73,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		inputPanelUpdate()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewWillAppear(_ animated: Bool) {
 
@@ -81,7 +81,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		dismissKeyboard()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewDidAppear(_ animated: Bool) {
 
@@ -94,7 +94,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		centerView = view.center
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewWillDisappear(_ animated: Bool) {
 
@@ -171,13 +171,13 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		return false
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override var canBecomeFirstResponder: Bool {
 
 		return true
 	}
-	
+
 	// MARK: - Typing indicator methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func typingIndicatorShow(_ show: Bool, animated: Bool) {
@@ -202,7 +202,6 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 	@objc func keyboardShow(_ notification: Notification?) {
 
 		if let info = notification?.userInfo {
-
 			if let keyboard = info[UIKeyboardFrameEndUserInfoKey] as? CGRect {
 				let duration = TimeInterval(info[UIKeyboardAnimationDurationUserInfoKey] as! Double)
 				UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
@@ -212,7 +211,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 		UIMenuController.shared.menuItems = nil
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func keyboardHide(_ notification: Notification?) {
 
@@ -221,16 +220,15 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 			UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
 				self.view.center = self.centerView
 			})
-
 		}
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func dismissKeyboard() {
 
 		view.endEditing(true)
 	}
-	
+
 	// MARK: - Input panel methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func inputPanelInit() {
@@ -250,7 +248,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 		textInput.layer.cornerRadius = RCMessages().inputRadius
 		textInput.clipsToBounds = true
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func inputPanelUpdate() {
 
@@ -298,26 +296,26 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		scroll(toBottom: false)
 	}
-	
+
 	// MARK: - User actions (title)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionTitle(_ sender: Any) {
 
 		actionTitle()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func actionTitle() {
 
 	}
-	
+
 	// MARK: - User actions (load earlier)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionLoadEarlier(_ sender: Any) {
 
 		actionLoadEarlier()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func actionLoadEarlier() {
 
@@ -341,7 +339,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		actionAttachMessage()
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionInputSend(_ sender: Any) {
 
@@ -352,61 +350,61 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 			inputPanelUpdate()
 		}
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func actionAttachMessage() {
 
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func actionSendMessage(_ text: String) {
 
 	}
-	
+
 	// MARK: - UIScrollViewDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 
 		dismissKeyboard()
 	}
-	
+
 	// MARK: - Table view data source
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func numberOfSections(in tableView: UITableView) -> Int {
 
 		return 0
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 		return 5
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
 		return RCMessages().sectionHeaderMargin
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 
 		return RCMessages().sectionFooterMargin
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
 
 		view.tintColor = UIColor.clear
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
 
 		view.tintColor = UIColor.clear
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
@@ -439,7 +437,7 @@ class RCMessagesView: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 		return 0
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 

@@ -51,8 +51,8 @@ class RegisterEmailView: UIViewController, UITextFieldDelegate {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionRegister(_ sender: Any) {
 
-		let email = fieldEmail.text!.lowercased()
-		let password = fieldPassword.text!
+		let email = (fieldEmail.text ?? "").lowercased()
+		let password = fieldPassword.text ?? ""
 
 		if (email.count == 0)		{ ProgressHUD.showError("Please enter your email."); return 	}
 		if (password.count == 0)	{ ProgressHUD.showError("Please enter your password."); return 	}

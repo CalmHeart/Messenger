@@ -370,7 +370,7 @@ class ChatPrivateView: RCMessagesView, UIGestureRecognizerDelegate, UIImagePicke
 		firebase2 = Database.database().reference(withPath: FLASTREAD_PATH).child(chatId)
 		firebase2?.observe(DataEventType.value, with: { snapshot in
 			if (snapshot.exists()) {
-				let dictionary: [String: Any] = snapshot.value as! [String: Any]
+				let dictionary = snapshot.value as! [String: Any]
 				for userId in dictionary.keys {
 					if (userId != FUser.currentId()) {
 						let lastTemp = dictionary[userId] as! Int64
@@ -527,7 +527,7 @@ class ChatPrivateView: RCMessagesView, UIGestureRecognizerDelegate, UIImagePicke
 
 	// MARK: - UIImagePickerControllerDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 
 		let video = info[UIImagePickerControllerMediaURL] as? URL
 		let picture = info[UIImagePickerControllerEditedImage] as? UIImage
@@ -704,13 +704,13 @@ class ChatPrivateView: RCMessagesView, UIGestureRecognizerDelegate, UIImagePicke
 
 		if (error != nil) { ProgressHUD.showError("Saving failed.") } else { ProgressHUD.showSuccess("Successfully saved.") }
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func video(_ videoPath: String, didFinishSavingWithError error: NSError?, contextInfo: UnsafeMutableRawPointer?) {
 
 		if (error != nil) { ProgressHUD.showError("Saving failed.") } else { ProgressHUD.showSuccess("Successfully saved.") }
 	}
-	
+
 	// MARK: - SelectUsersDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func didSelectUsers(users: [DBUser]) {

@@ -59,13 +59,12 @@ class BlockedView: UIViewController, UISearchBarDelegate, UITableViewDataSource,
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func loadUsers() {
 
-		var predicate: NSPredicate?
-		let text = searchBar.text!
+		var predicate = NSPredicate(format: "objectId IN %@", blockedIds)
 
-		if (text.count != 0) {
-			predicate = NSPredicate(format: "objectId IN %@ AND fullname CONTAINS[c] %@", blockedIds, text)
-		} else {
-			predicate = NSPredicate(format: "objectId IN %@", blockedIds)
+		if let text = searchBar.text {
+			if (text.count != 0) {
+				predicate = NSPredicate(format: "objectId IN %@ AND fullname CONTAINS[c] %@", blockedIds, text)
+			}
 		}
 
 		dbusers = DBUser.objects(with: predicate).sortedResults(usingKeyPath: FUSER_FULLNAME, ascending: true)

@@ -78,7 +78,7 @@ class WallpapersView: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 	// MARK: - UIImagePickerControllerDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 
 	}
 

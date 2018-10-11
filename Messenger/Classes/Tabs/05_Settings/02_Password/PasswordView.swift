@@ -61,30 +61,36 @@ class PasswordView: UIViewController, UITableViewDataSource, UITableViewDelegate
 		ProgressHUD.show(nil, interaction: false)
 
 		if let firuser = Auth.auth().currentUser {
-			let credential: AuthCredential = EmailAuthProvider.credential(withEmail: firuser.email!, password: fieldPassword0.text!)
-			firuser.reauthenticateAndRetrieveData(with: credential) { authResult, error in
-				if (error == nil) {
-					self.updatePassword()
-				} else {
-					ProgressHUD.showError(error?.localizedDescription)
-				}
-			}
-		}
+			if let email = firuser.email {
+				if let password = fieldPassword0.text {
+					let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+					firuser.reauthenticateAndRetrieveData(with: credential) { authResult, error in
+						if (error == nil) {
+							self.updatePassword()
+						} else {
+							ProgressHUD.showError(error?.localizedDescription)
+						}
+					}
+				} else { ProgressHUD.showError("Check password error.") }
+			} else { ProgressHUD.showError("Check password error.") }
+		} else { ProgressHUD.showError("Check password error.") }
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func updatePassword() {
 
 		if let firuser = Auth.auth().currentUser {
-			firuser.updatePassword(to: fieldPassword1.text!) { error in
-				if (error == nil) {
-					ProgressHUD.showSuccess("Password changed.")
-					self.dismiss(animated: true)
-				} else {
-					ProgressHUD.showError(error?.localizedDescription)
+			if let password = fieldPassword1.text {
+				firuser.updatePassword(to: password) { error in
+					if (error == nil) {
+						ProgressHUD.showSuccess("Password changed.")
+						self.dismiss(animated: true)
+					} else {
+						ProgressHUD.showError(error?.localizedDescription)
+					}
 				}
-			}
-		}
+			} else { ProgressHUD.showError("Update password error.") }
+		} else { ProgressHUD.showError("Update password error.") }
 	}
 
 	// MARK: - User actions
@@ -97,18 +103,13 @@ class PasswordView: UIViewController, UITableViewDataSource, UITableViewDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func actionDone() {
 
-		if (fieldPassword0.text?.count == 0) {
-			ProgressHUD.showError("Current Password must be set.")
-			return
-		}
-		if (fieldPassword1.text?.count == 0) {
-			ProgressHUD.showError("New Password must be set.")
-			return
-		}
-		if (fieldPassword1.text != fieldPassword2.text) {
-			ProgressHUD.showError("New Passwords must be the same.")
-			return
-		}
+		let password0 = fieldPassword0.text ?? ""
+		let password1 = fieldPassword1.text ?? ""
+		let password2 = fieldPassword2.text ?? ""
+
+		if (password0.count == 0)	{ ProgressHUD.showError("Current Password must be set.");	return	}
+		if (password1.count == 0)	{ ProgressHUD.showError("New Password must be set.");		return	}
+		if (password1 != password2)	{ ProgressHUD.showError("New Passwords must be the same.");	return	}
 
 		checkPassword()
 	}

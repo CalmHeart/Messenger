@@ -31,7 +31,7 @@ class NotificationCenterX: NSObject {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	class func post(notification: String, afterDelay delay: TimeInterval) {
+	class func post(notification: String, delay: TimeInterval) {
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
 			self.post(notification: notification)

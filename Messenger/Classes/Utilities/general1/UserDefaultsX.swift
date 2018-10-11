@@ -27,7 +27,7 @@ class UserDefaultsX: NSObject {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	class func removeObject(key: String, afterDelay delay: TimeInterval) {
+	class func removeObject(key: String, delay: TimeInterval) {
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
 			removeObject(key: key)

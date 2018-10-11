@@ -165,14 +165,17 @@ class MessageQueue: NSObject {
 		message[FMESSAGE_TYPE] = MESSAGE_PICTURE
 		message[FMESSAGE_TEXT] = "[Picture message]"
 
-		let dataPicture = UIImageJPEGRepresentation(picture, 0.6)
-		DownloadManager.saveImage(data: dataPicture!, link: message.objectId())
+		if let dataPicture = UIImageJPEGRepresentation(picture, 0.6) {
+			DownloadManager.saveImage(data: dataPicture, link: message.objectId())
 
-		message[FMESSAGE_PICTURE] = message.objectId()
-		message[FMESSAGE_PICTURE_WIDTH] = Int(picture.size.width)
-		message[FMESSAGE_PICTURE_HEIGHT] = Int(picture.size.height)
+			message[FMESSAGE_PICTURE] = message.objectId()
+			message[FMESSAGE_PICTURE_WIDTH] = Int(picture.size.width)
+			message[FMESSAGE_PICTURE_HEIGHT] = Int(picture.size.height)
 
-		createMessage(message: message)
+			createMessage(message: message)
+		} else {
+			ProgressHUD.showError("Picture data error.")
+		}
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -181,13 +184,16 @@ class MessageQueue: NSObject {
 		message[FMESSAGE_TYPE] = MESSAGE_VIDEO
 		message[FMESSAGE_TEXT] = "[Video message]"
 
-		let dataVideo = NSData(contentsOfFile: video.path) as! Data
-		DownloadManager.saveVideo(data: dataVideo, link: message.objectId())
+		if let dataVideo = NSData(contentsOfFile: video.path) as? Data {
+			DownloadManager.saveVideo(data: dataVideo, link: message.objectId())
 
-		message[FMESSAGE_VIDEO] = message.objectId()
-		message[FMESSAGE_VIDEO_DURATION] = Video.duration(path: video.path)
+			message[FMESSAGE_VIDEO] = message.objectId()
+			message[FMESSAGE_VIDEO_DURATION] = Video.duration(path: video.path)
 
-		createMessage(message: message)
+			createMessage(message: message)
+		} else {
+			ProgressHUD.showError("Video data error.")
+		}
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -196,13 +202,16 @@ class MessageQueue: NSObject {
 		message[FMESSAGE_TYPE] = MESSAGE_AUDIO
 		message[FMESSAGE_TEXT] = "[Audio message]"
 
-		let dataAudio = NSData(contentsOfFile: audio) as! Data
-		DownloadManager.saveAudio(data: dataAudio, link: message.objectId())
+		if let dataAudio = NSData(contentsOfFile: audio) as? Data {
+			DownloadManager.saveAudio(data: dataAudio, link: message.objectId())
 
-		message[FMESSAGE_AUDIO] = message.objectId()
-		message[FMESSAGE_AUDIO_DURATION] = Audio.duration(path: audio)
+			message[FMESSAGE_AUDIO] = message.objectId()
+			message[FMESSAGE_AUDIO_DURATION] = Audio.duration(path: audio)
 
-		createMessage(message: message)
+			createMessage(message: message)
+		} else {
+			ProgressHUD.showError("Audio data error.")
+		}
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------

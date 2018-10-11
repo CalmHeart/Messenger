@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SINServiceDelegate, SINCa
 		// Firebase initialization
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		FirebaseApp.configure()
-		Database().isPersistenceEnabled = false
+		Database.database().isPersistenceEnabled = false
 
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		// Google login initialization
@@ -79,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SINServiceDelegate, SINCa
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		// This can be removed once Firebase auth issue is resolved
 		//-----------------------------------------------------------------------------------------------------------------------------------------
-		if (UserDefaults.standard.bool(forKey: "Initialized") == false) {
-			UserDefaults.standard.set(true, forKey: "Initialized")
+		if (UserDefaultsX.bool(key: "Initialized") == false) {
+			UserDefaultsX.setObject(value: true, key: "Initialized")
 			FUser.logOut()
 		}
 

@@ -45,8 +45,8 @@ class UserStatuses: NSObject {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func checkItems() {
 
-		let reference: DatabaseReference? = Database.database().reference(withPath: FUSERSTATUS_PATH)
-		reference?.observeSingleEvent(of: DataEventType.value, with: { snapshot in
+		let reference = Database.database().reference(withPath: FUSERSTATUS_PATH)
+		reference.observeSingleEvent(of: DataEventType.value, with: { snapshot in
 			if (snapshot.exists() == false) {
 				UserStatus.createItems()
 			}
@@ -59,7 +59,7 @@ class UserStatuses: NSObject {
 		let lastUpdatedAt = DBUserStatus.lastUpdatedAt()
 
 		firebase = Database.database().reference(withPath: FUSERSTATUS_PATH)
-		let query = firebase?.queryOrdered(byChild: FUSERSTATUS_UPDATEDAT).queryStarting(atValue: (Int(lastUpdatedAt) + 1))
+		let query = firebase?.queryOrdered(byChild: FUSERSTATUS_UPDATEDAT).queryStarting(atValue: lastUpdatedAt + 1)
 
 		query?.observe(DataEventType.childAdded, with: { snapshot in
 			let userStatus = snapshot.value as! [String: Any]
@@ -81,7 +81,7 @@ class UserStatuses: NSObject {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func updateRealm(userStatus: [AnyHashable: Any]?) {
+	func updateRealm(userStatus: [String: Any]) {
 
 		do {
 			let realm = RLMRealm.default()

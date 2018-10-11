@@ -13,25 +13,21 @@
 class Checksum: NSObject {
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	class func md5HashOf(data: Data?) -> String {
+	class func md5HashOf(data: Data) -> String {
 
-		if (data != nil) {
-
-			var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
-			digestData.withUnsafeMutableBytes {digestBytes in
-				data!.withUnsafeBytes {messageBytes in
-					CC_MD5(messageBytes, CC_LONG((data!.count)), digestBytes)
-				}
+		var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+		digestData.withUnsafeMutableBytes {digestBytes in
+			data.withUnsafeBytes {messageBytes in
+				CC_MD5(messageBytes, CC_LONG((data.count)), digestBytes)
 			}
-
-			var md5 = ""
-			for byte in digestData {
-				md5 += String(format:"%02x", byte)
-			}
-
-			return md5
 		}
-		return ""
+
+		var md5 = ""
+		for byte in digestData {
+			md5 += String(format:"%02x", byte)
+		}
+
+		return md5
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------

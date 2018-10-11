@@ -54,13 +54,12 @@ class ArchiveView: UIViewController, UISearchBarDelegate, UITableViewDataSource,
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func loadChats() {
 
-		var predicate: NSPredicate?
-		let text = searchBar.text!
+		var predicate = NSPredicate(format: "isArchived == YES AND isDeleted == NO")
 
-		if (text.count != 0) {
-			predicate = NSPredicate(format: "isArchived == YES AND isDeleted == NO AND details CONTAINS[c] %@", text)
-		} else {
-			predicate = NSPredicate(format: "isArchived == YES AND isDeleted == NO")
+		if let text = searchBar.text {
+			if (text.count != 0) {
+				predicate = NSPredicate(format: "isArchived == YES AND isDeleted == NO AND details CONTAINS[c] %@", text)
+			}
 		}
 
 		dbchats = DBChat.objects(with: predicate).sortedResults(usingKeyPath: "lastMessageDate", ascending: false)

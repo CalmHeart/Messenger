@@ -25,7 +25,7 @@ class FUser: FObject {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func currentUser() -> FUser {
 
-		if let dictionary = UserDefaults.standard.object(forKey: "CurrentUser") as? [String : Any] {
+		if let dictionary = UserDefaults.standard.object(forKey: "CurrentUser") as? [String: Any] {
 			return FUser(path: "User", dictionary: dictionary)
 		}
 		return FUser(path: "User")

@@ -9,7 +9,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-//---------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 class Messages: NSObject {
 
 	var chatId = ""
@@ -68,7 +68,7 @@ class Messages: NSObject {
 		let lastUpdatedAt = DBMessage.lastUpdatedAt()
 
 		firebase = Database.database().reference(withPath: FMESSAGE_PATH).child(FUser.currentId())
-		let query = firebase?.queryOrdered(byChild: FMESSAGE_UPDATEDAT).queryStarting(atValue: (Int(lastUpdatedAt) + 1))
+		let query = firebase?.queryOrdered(byChild: FMESSAGE_UPDATEDAT).queryStarting(atValue: lastUpdatedAt + 1)
 
 		query?.observe(DataEventType.childAdded, with: { snapshot in
 			let message = snapshot.value as! [String: Any]

@@ -178,7 +178,7 @@ func PresentVideoLibrary(target: Any, edit: Bool) -> Bool {
 			}
 		}
 	}
-	
+
 	if (UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)) {
 		if let availableMediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum) {
 			if (availableMediaTypes.contains(type)) {

@@ -24,7 +24,7 @@ class PictureView: NYTPhotosViewController, SelectUsersDelegate {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	class func photos(messageId: String, chatId: String) -> [String : Any] {
+	class func photos(messageId: String, chatId: String) -> [String: Any] {
 
 		var photoItems: [NYTPhotoItem] = []
 		var initialPhoto: NYTPhotoItem? = nil
@@ -65,7 +65,7 @@ class PictureView: NYTPhotosViewController, SelectUsersDelegate {
 
 		return ["photoItems": photoItems, "initialPhoto": initialPhoto]
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func setMessages(messages: Bool)
 	{
@@ -148,7 +148,7 @@ class PictureView: NYTPhotosViewController, SelectUsersDelegate {
 	@objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeMutableRawPointer?) {
 
 	}
-	
+
 	// MARK: - User actions (forward)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func actionForward() {

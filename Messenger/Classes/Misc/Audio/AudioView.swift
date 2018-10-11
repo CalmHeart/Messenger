@@ -66,12 +66,8 @@ class AudioView: UIViewController, AVAudioPlayerDelegate {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionStop(_ sender: Any) {
 
-		if (isPlaying) {
-			audioPlayerStop()
-		}
-		if (isRecording) {
-			audioRecorderStop()
-		}
+		if (isPlaying)		{ audioPlayerStop()		}
+		if (isRecording)	{ audioRecorderStop()	}
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -207,10 +203,10 @@ class AudioView: UIViewController, AVAudioPlayerDelegate {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func updateButtonDetails() {
 
-		buttonRecord.isHidden = isRecorded
-		buttonStop.isHidden = (isPlaying == false) && (isRecording == false)
-		buttonDelete.isHidden = (isPlaying == true) || (isRecorded == false)
-		buttonPlay.isHidden = (isPlaying == true) || (isRecorded == false)
-		buttonSend.isHidden = (isPlaying == true) || (isRecorded == false)
+		buttonRecord.isHidden	= isRecorded
+		buttonStop.isHidden		= (isPlaying == false) && (isRecording == false)
+		buttonDelete.isHidden	= (isPlaying == true) || (isRecorded == false)
+		buttonPlay.isHidden		= (isPlaying == true) || (isRecorded == false)
+		buttonSend.isHidden		= (isPlaying == true) || (isRecorded == false)
 	}
 }

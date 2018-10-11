@@ -14,7 +14,7 @@ class FObject: NSObject {
 
 	private var pathX: String!
 	private var subpathX: String?
-	var values: [String : Any] = [:]
+	var values: [String: Any] = [:]
 
 	// MARK: - Init methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -33,13 +33,13 @@ class FObject: NSObject {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	convenience init(path: String, dictionary: [String : Any]) {
+	convenience init(path: String, dictionary: [String: Any]) {
 
 		self.init(path: path, subpath: nil, dictionary: dictionary)
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	convenience init(path: String, subpath: String?, dictionary: [String : Any]) {
+	convenience init(path: String, subpath: String?, dictionary: [String: Any]) {
 
 		self.init(path: path, subpath: subpath)
 

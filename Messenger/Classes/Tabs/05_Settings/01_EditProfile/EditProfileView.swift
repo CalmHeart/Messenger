@@ -102,18 +102,16 @@ class EditProfileView: UIViewController, UITableViewDataSource, UITableViewDeleg
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func saveUser() {
+	func saveUser(firstname: String, lastname: String, country: String, location: String, phone: String) {
 
 		let user = FUser.currentUser()
 
-		let fullname = "\(fieldFirstname.text!) \(fieldLastname.text!)"
-
-		user[FUSER_FIRSTNAME] = fieldFirstname.text!
-		user[FUSER_LASTNAME] = fieldLastname.text!
-		user[FUSER_FULLNAME] = fullname
-		user[FUSER_COUNTRY] = labelCountry.text!
-		user[FUSER_LOCATION] = fieldLocation.text!
-		user[FUSER_PHONE] = fieldPhone.text!
+		user[FUSER_FIRSTNAME] = firstname
+		user[FUSER_LASTNAME] = lastname
+		user[FUSER_FULLNAME] = "\(firstname) \(lastname)"
+		user[FUSER_COUNTRY] = country
+		user[FUSER_LOCATION] = location
+		user[FUSER_PHONE] = phone
 
 		user.saveInBackground(block: { error in
 			if (error == nil) {
@@ -173,13 +171,20 @@ class EditProfileView: UIViewController, UITableViewDataSource, UITableViewDeleg
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func actionDone() {
 
-		if (fieldFirstname.text!.count == 0)	{ ProgressHUD.showError("Firstname must be set.");		return		}
-		if (fieldLastname.text!.count == 0)		{ ProgressHUD.showError("Lastname must be set.");		return		}
-		if (labelCountry.text!.count == 0)		{ ProgressHUD.showError("Country must be set.");		return		}
-		if (fieldLocation.text!.count == 0)		{ ProgressHUD.showError("Location must be set.");		return		}
-		if (fieldPhone.text!.count == 0)		{ ProgressHUD.showError("Phone number must be set.");	return		}
+		let firstname = fieldFirstname.text ?? ""
+		let lastname = fieldLastname.text ?? ""
+		let country = labelCountry.text ?? ""
+		let location = fieldLocation.text ?? ""
+		let phone = fieldPhone.text ?? ""
 
-		saveUser()
+		if (firstname.count == 0)	{ ProgressHUD.showError("Firstname must be set.");		return	}
+		if (lastname.count == 0)	{ ProgressHUD.showError("Lastname must be set.");		return	}
+		if (country.count == 0)		{ ProgressHUD.showError("Country must be set.");		return	}
+		if (location.count == 0)	{ ProgressHUD.showError("Location must be set.");		return	}
+		if (phone.count == 0)		{ ProgressHUD.showError("Phone number must be set.");	return	}
+
+		saveUser(firstname: firstname, lastname: lastname, country: country, location: location, phone: phone)
+
 		dismiss(animated: true)
 	}
 
@@ -210,7 +215,7 @@ class EditProfileView: UIViewController, UITableViewDataSource, UITableViewDeleg
 
 	// MARK: - UIImagePickerControllerDelegate
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 
 		if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
 			uploadUserPicture(image: image)

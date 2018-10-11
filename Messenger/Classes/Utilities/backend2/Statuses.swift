@@ -51,7 +51,7 @@ class Statuses: NSObject {
 		let lastUpdatedAt = DBStatus.lastUpdatedAt()
 
 		firebase = Database.database().reference(withPath: FSTATUS_PATH).child(FUser.currentId())
-		let query = firebase?.queryOrdered(byChild: FSTATUS_UPDATEDAT).queryStarting(atValue: (Int(lastUpdatedAt) + 1))
+		let query = firebase?.queryOrdered(byChild: FSTATUS_UPDATEDAT).queryStarting(atValue: lastUpdatedAt + 1)
 
 		query?.observe(DataEventType.childAdded, with: { snapshot in
 			let status = snapshot.value as! [String: Any]
@@ -64,7 +64,7 @@ class Statuses: NSObject {
 		})
 
 		query?.observe(DataEventType.childChanged, with: { snapshot in
-			let status = snapshot.value as! [String : Any]
+			let status = snapshot.value as! [String: Any]
 			if (status[FSTATUS_CREATEDAT] as? Int64 != nil) {
 				DispatchQueue(label: "Statuses").async {
 					self.updateRealm(status: status)
@@ -75,7 +75,7 @@ class Statuses: NSObject {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	func updateRealm(status: [String : Any]) {
+	func updateRealm(status: [String: Any]) {
 
 		do {
 			let realm = RLMRealm.default()

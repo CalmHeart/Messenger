@@ -51,7 +51,7 @@ class Friends: NSObject {
 		let lastUpdatedAt = DBFriend.lastUpdatedAt()
 
 		firebase = Database.database().reference(withPath: FFRIEND_PATH).child(FUser.currentId())
-		let query = firebase?.queryOrdered(byChild: FFRIEND_UPDATEDAT).queryStarting(atValue: (Int(lastUpdatedAt) + 1))
+		let query = firebase?.queryOrdered(byChild: FFRIEND_UPDATEDAT).queryStarting(atValue: lastUpdatedAt + 1)
 
 		query?.observe(DataEventType.childAdded, with: { snapshot in
 			let friend = snapshot.value as! [String: Any]

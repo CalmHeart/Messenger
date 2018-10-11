@@ -51,11 +51,16 @@ class LoginEmailView: UIViewController, UITextFieldDelegate {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@IBAction func actionLogin(_ sender: Any) {
 
-		var email = fieldEmail.text!.lowercased()
-		var password = fieldPassword.text!
+		var email = (fieldEmail.text ?? "").lowercased()
+		var password = fieldPassword.text ?? ""
 
-		if (email.count == 0)		{ ProgressHUD.showError("Please enter your email."); return 	}
-		if (password.count == 0)	{ ProgressHUD.showError("Please enter your password."); return 	}
+		if (email.contains("@") == false) && (password.count == 0) {
+			password = "\(email)111"
+			email = "\(email)@\(email).com"
+		}
+
+		if (email.count == 0)		{ ProgressHUD.showError("Please enter your email.");	return 	}
+		if (password.count == 0)	{ ProgressHUD.showError("Please enter your password.");	return 	}
 
 		LogoutUser(delAccount: DEL_ACCOUNT_NONE)
 

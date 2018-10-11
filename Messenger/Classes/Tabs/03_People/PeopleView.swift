@@ -115,14 +115,12 @@ class PeopleView: UIViewController, UISearchBarDelegate, UITableViewDataSource, 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func loadUsers() {
 
-		var predicate: NSPredicate?
-		let text = searchBar.text!
+		var predicate = NSPredicate(format: "NOT objectId IN %@ AND objectId IN %@", blockerIds, friendIds)
 
-		if (text.count != 0) {
-			let format = "NOT objectId IN %@ AND objectId IN %@ AND fullname CONTAINS[c] %@"
-			predicate = NSPredicate(format: format, blockerIds, friendIds, text)
-		} else {
-			predicate = NSPredicate(format: "NOT objectId IN %@ AND objectId IN %@", blockerIds, friendIds)
+		if let text = searchBar.text {
+			if (text.count != 0) {
+				predicate = NSPredicate(format: "NOT objectId IN %@ AND objectId IN %@ AND fullname CONTAINS[c] %@", blockerIds, friendIds, text)
+			}
 		}
 
 		dbusers = DBUser.objects(with: predicate).sortedResults(usingKeyPath: FUSER_FULLNAME, ascending: true)

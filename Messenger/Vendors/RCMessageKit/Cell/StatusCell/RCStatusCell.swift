@@ -76,7 +76,7 @@ class RCStatusCell: UITableViewCell {
 		let size = self.size(indexPath, messagesView: messagesView)
 		return size.height
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func size(_ indexPath: IndexPath, messagesView: RCMessagesView) -> CGSize {
 

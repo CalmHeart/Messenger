@@ -48,7 +48,7 @@ class SettingsView: UITableViewController {
 
 		super.init(coder: aDecoder)
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	override func viewDidLoad() {
 

@@ -112,7 +112,7 @@ class MediaLoader: NSObject {
 			tableView.reloadData()
 		}
 	}
-	
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func showVideoFile(rcmessage: RCMessage, path: String, tableView: UITableView) {
 
